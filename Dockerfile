@@ -10,10 +10,10 @@ COPY . ./
 # ... y construir
 RUN dotnet publish -c Release -o out
 
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build-env
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
 WORKDIR /app
 
 # copiar desde el proyecto construido (en el destino) a otro dir. del propio destino
 COPY --from=build-env /app/out .
 
-ENTRYPOINT ["dotnet", "my_kubweb.dll"]
+ENTRYPOINT ["dotnet", "mi_kubweb.dll"]
